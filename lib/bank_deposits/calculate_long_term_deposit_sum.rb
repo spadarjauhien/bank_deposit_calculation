@@ -1,10 +1,10 @@
-require 'bank_deposits/calculate_annual_deposit_sum'
+require 'bank_deposits/container'
 
 module BankDeposits
   class CalculateLongTermDepositSum
     attr_reader :calculate_annual_deposit_sum
 
-    def initialize(calculate_annual_deposit_sum = CalculateAnnualDepositSum.new)
+    def initialize(calculate_annual_deposit_sum = Container[:calculate_annual_deposit_sum])
       @calculate_annual_deposit_sum = calculate_annual_deposit_sum
     end
 
