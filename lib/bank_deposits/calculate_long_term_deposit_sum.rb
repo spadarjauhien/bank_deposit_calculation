@@ -1,12 +1,8 @@
-require 'bank_deposits/container'
+require 'bank_deposits/import'
 
 module BankDeposits
   class CalculateLongTermDepositSum
-    attr_reader :calculate_annual_deposit_sum
-
-    def initialize(calculate_annual_deposit_sum = Container[:calculate_annual_deposit_sum])
-      @calculate_annual_deposit_sum = calculate_annual_deposit_sum
-    end
+    include Import["calculate_annual_deposit_sum"]
 
     def call(interest_rate, annual_addition, years, annual_compounds_count)
       years.times.reduce(0) do |period_start_sum, _year|
