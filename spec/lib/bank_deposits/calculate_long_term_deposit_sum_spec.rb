@@ -1,9 +1,9 @@
-require 'calculate_long_term_deposit_sum'
+require 'bank_deposits/calculate_long_term_deposit_sum'
 
 # Expected results are calculated with CalculateStuff.com:
 # https://www.calculatestuff.com/financial/compound-interest-calculator
 
-RSpec.describe CalculateLongTermDepositSum, '#call' do
+RSpec.describe BankDeposits::CalculateLongTermDepositSum, '#call' do
   subject do
     calculate_deposit_sum_for_year.(interest_rate, annual_addition, years, annual_compounds_count).round(2)
   end
