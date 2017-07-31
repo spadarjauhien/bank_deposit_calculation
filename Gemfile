@@ -8,3 +8,5 @@ gem "rspec"
 
 gem "dry-auto_inject"
 gem "dry-container"
+gem "dry-struct"
+gem "dry-types"
