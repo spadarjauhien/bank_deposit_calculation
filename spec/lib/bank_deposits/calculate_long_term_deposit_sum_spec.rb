@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bank_deposits/calculate_long_term_deposit_sum'
 
 # Expected results are calculated with CalculateStuff.com:
@@ -5,7 +7,7 @@ require 'bank_deposits/calculate_long_term_deposit_sum'
 
 RSpec.describe BankDeposits::CalculateLongTermDepositSum, '#call' do
   subject do
-    calculate_deposit_sum_for_year.(interest_rate, annual_addition, years, annual_compounds_count).round(2)
+    calculate_deposit_sum_for_year.call(interest_rate, annual_addition, years, annual_compounds_count).round(2)
   end
 
   let(:calculate_deposit_sum_for_year) { described_class.new }

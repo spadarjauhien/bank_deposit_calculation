@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bank_deposits/deposit'
 
 RSpec.describe BankDeposits::Deposit do

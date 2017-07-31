@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'bank_deposits/calculate_annual_deposit_sum'
 
 # Expected results are calculated with CalculateStuff.com:
 # https://www.calculatestuff.com/financial/compound-interest-calculator
 
 RSpec.describe BankDeposits::CalculateAnnualDepositSum, '#call' do
-  subject { calculate_annual_deposit_sum.(interest_rate, principal, annual_compounds_count).round(2) }
+  subject { calculate_annual_deposit_sum.call(interest_rate, principal, annual_compounds_count).round(2) }
 
   let(:calculate_annual_deposit_sum) { described_class.new }
 

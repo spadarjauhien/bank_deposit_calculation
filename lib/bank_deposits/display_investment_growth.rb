@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'bank_deposits/import'
 
 module BankDeposits
   class DisplayInvestmentGrowth
-    include Import["calculate_long_term_deposit_sum"]
+    include Import['calculate_long_term_deposit_sum']
 
     def call(deposit, years, annual_addition)
       total_investment = annual_addition * years
@@ -12,9 +14,9 @@ module BankDeposits
                                                           deposit.annual_compounds_count)
       total_interest = total_growth - total_investment
 
-      puts "After #{years} years your investment will be worth $%.2f" % total_growth
-      puts "Average investment is $%.2f" % total_investment
-      puts "Interest is $%.2f" % total_interest
+      puts format("After #{years} years your investment will be worth $%.2f", total_growth)
+      puts format('Average investment is $%.2f', total_investment)
+      puts format('Interest is $%.2f', total_interest)
     end
   end
 end

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'bank_deposits/display_investment_growth'
 require 'bank_deposits/deposit'
 
 RSpec.describe BankDeposits::DisplayInvestmentGrowth, '#call' do
   subject do
-    display_investment_growth.(deposit, years, annual_addition)
+    display_investment_growth.call(deposit, years, annual_addition)
   end
 
   let(:display_investment_growth) do
@@ -11,7 +13,7 @@ RSpec.describe BankDeposits::DisplayInvestmentGrowth, '#call' do
   end
 
   let(:calculate_long_term_deposit_sum) do
-    -> (interest_rate, annual_addition, years, annual_compounds_count) { annual_addition * years * 2 }
+    ->(_interest_rate, annual_addition, years, _annual_compounds_count) { annual_addition * years * 2 }
   end
 
   let(:deposit) do
