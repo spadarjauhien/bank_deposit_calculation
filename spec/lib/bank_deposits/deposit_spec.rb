@@ -8,11 +8,15 @@ RSpec.describe BankDeposits::Deposit do
   let(:annual_compounds_count) { nil }
 
   def construct_deposit
-    described_class.new(name: name, interest_rate: interest_rate, annual_compounds_count: annual_compounds_count)
+    described_class.new(name: name,
+                        currency: currency,
+                        interest_rate: interest_rate,
+                        annual_compounds_count: annual_compounds_count)
   end
 
   context 'when all attributes are set and valid' do
     let(:name) { 'My Super Deposit' }
+    let(:currency) { 'BYN' }
     let(:interest_rate) { 9.5 }
     let(:annual_compounds_count) { 4 }
 
@@ -21,6 +25,7 @@ RSpec.describe BankDeposits::Deposit do
 
       expect(deposit).to be_a(::BankDeposits::Deposit)
       expect(deposit.name).to eq(name)
+      expect(deposit.currency).to eq(currency)
       expect(deposit.interest_rate).to eq(interest_rate)
       expect(deposit.annual_compounds_count).to eq(annual_compounds_count)
     end
@@ -28,6 +33,7 @@ RSpec.describe BankDeposits::Deposit do
 
   context 'when no one attribute is set' do
     let(:name) { nil }
+    let(:currency) { nil }
     let(:interest_rate) { nil }
     let(:annual_compounds_count) { nil }
 
@@ -38,6 +44,7 @@ RSpec.describe BankDeposits::Deposit do
 
   context 'when all attributes are set but not all are valid' do
     let(:name) { 'My Super Deposit' }
+    let(:currency) { 'USD' }
     let(:interest_rate) { 10.0 }
     let(:annual_compounds_count) { 12 }
 
@@ -49,6 +56,12 @@ RSpec.describe BankDeposits::Deposit do
 
     context 'when name is blank' do
       let(:name) { '' }
+
+      include_examples 'it raises error while constructing new object'
+    end
+
+    context 'when currency is invalid' do
+      let(:currency) { 'dollars' }
 
       include_examples 'it raises error while constructing new object'
     end
